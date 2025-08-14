@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Flight Tracker - Complete Network</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="loading-screen">
+            <div class="loading-spinner"></div>
+            <p>Loading Global Flight Network...</p>
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+                <span id="progress-text">Initializing...</span>
+            </div>
+        </div>
+
+        <!-- Main Globe Container -->
+        <div id="globe-container" class="globe-container"></div>
+
+        <!-- UI Controls -->
+        <div class="ui-overlay">
+            <!-- Top Left Stats -->
+            <div class="stats-panel">
+                <div class="stat-item">
+                    <span class="stat-label">Flight Routes:</span>
+                    <span id="route-count" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Active Flights:</span>
+                    <span id="flight-count" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Airports:</span>
+                    <span id="airport-count" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Last Updated:</span>
+                    <span id="last-update" class="stat-value">--:--</span>
+                </div>
+            </div>
+
+            <!-- Top Right Controls -->
+            <div class="controls-panel">
+                <button id="toggle-paths-btn" class="btn btn--secondary btn--sm">Hide Paths</button>
+                <button id="auto-rotate-btn" class="btn btn--secondary btn--sm">Auto Rotate: ON</button>
+                <button id="refresh-btn" class="btn btn--primary btn--sm">Refresh Data</button>
+            </div>
+
+            <!-- Flight Info Modal -->
+            <div id="flight-info" class="flight-info hidden">
+                <div class="flight-info__content">
+                    <button id="close-flight-info" class="flight-info__close">&times;</button>
+                    <h3 id="flight-callsign">Flight Info</h3>
+                    <div class="flight-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Country:</span>
+                            <span id="flight-country" class="detail-value">--</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Altitude:</span>
+                            <span id="flight-altitude" class="detail-value">-- ft</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Speed:</span>
+                            <span id="flight-speed" class="detail-value">-- km/h</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Coordinates:</span>
+                            <span id="flight-coords" class="detail-value">--, --</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Airport Info Modal -->
+            <div id="airport-info" class="airport-info hidden">
+                <div class="airport-info__content">
+                    <button id="close-airport-info" class="airport-info__close">&times;</button>
+                    <h3 id="airport-name">Airport Info</h3>
+                    <div class="airport-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Code:</span>
+                            <span id="airport-code" class="detail-value">--</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">City:</span>
+                            <span id="airport-city" class="detail-value">--</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Country:</span>
+                            <span id="airport-country" class="detail-value">--</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Coordinates:</span>
+                            <span id="airport-coords" class="detail-value">--, --</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- City Info Tooltip -->
+            <div id="city-tooltip" class="city-tooltip hidden">
+                <span id="city-name"></span>
+            </div>
+
+            <!-- Error Message -->
+            <div id="error-message" class="error-message hidden">
+                <p>Failed to load flight data. Using comprehensive route network...</p>
+            </div>
+
+            <!-- Network Info Banner -->
+            <div class="network-info">
+                <span class="network-status">Complete Global Flight Network</span>
+                <span class="coverage-indicator">🌍 Worldwide Coverage</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/globe.gl"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
